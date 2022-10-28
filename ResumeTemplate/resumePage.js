@@ -1,4 +1,5 @@
 
+// search is not case sensitive
 function search(value) {
 	return data.resume.filter((n) => n.basics.AppliedFor.toLowerCase().startsWith(value.toLowerCase()))
 }
@@ -123,9 +124,7 @@ function checkAndDisableNavButtons(searchResult) {
 
 function renderSearchResult(searchResult) {
 	window.currItem = searchResult;
-
 	showResumeAndHideSearchResults();
-
 	renderResumeHeader(searchResult.basics.name, searchResult.basics.AppliedFor)
 	renderPI(searchResult.basics)
 	renderTechnicalSkills(searchResult.skills.keywords)
@@ -141,8 +140,7 @@ function renderSearchResult(searchResult) {
 function createSearchResultLink(searchResult) {
 	let elem = document.createElement('a')
 	elem.innerText = searchResult.basics.name;
-	elem.setAttribute('href', '#')
-	elem.addEventListener('click', () => renderSearchResult(searchResult))
+	renderSearchResult(searchResult)
 	elem.setAttribute('data', `result: ${searchResult}`)
 	return elem
 }
